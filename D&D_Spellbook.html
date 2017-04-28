@@ -1,0 +1,4176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<title>D&D 5th edition Spells</title> 
+    <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="normalize.css"   type="text/css" media="screen" /> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="spells.css"   type="text/css" media="screen" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script   src="script.js"    type="text/javascript"></script>
+  </head>
+  <body onload="sortTable()">
+  
+  <input type="text" id="myInput" placeholder="Search for spells" title="Type in a name">
+  <form>
+  <select id="classSearch" class="filter">
+	<option value="NA" selected>Class</option>
+	<option value="bard">Bard</option>
+    <option value="cleric">Cleric</option>
+    <option value="druid">Druid</option>
+    <option value="paladin" >Paladin</option>
+    <option value="ranger">Ranger</option>
+	<option value="sorcerer">Sorcerer</option>
+    <option value="warlock">Warlock</option>
+    <option value="wizard" >Wizard</option>
+  </select>
+  
+  <select id="levelSearch" class="filter">
+	<option value="NA" selected>Spell Level</option>
+	<option value="0">0</option>
+    <option value="1st">1st</option>
+    <option value="2nd">2nd</option>
+    <option value="3rd" >3rd</option>
+    <option value="4th">4th</option>
+	<option value="5th">5th</option>
+    <option value="6th">6th</option>
+    <option value="7th" >7th</option>
+    <option value="8th">8th</option>
+	<option value="9th">9th</option>
+  </select>
+  
+  <select id="schoolSearch" class="filter">
+	<option value="NA" selected>School of Magic</option>
+	<option value="Abjuration">Abjuration</option>
+    <option value="Conjuration">Conjuration</option>
+    <option value="Divination">Divination</option>
+    <option value="Enchantment" >Enchantment</option>
+    <option value="Evocation">Evocation</option>
+	<option value="Illusion">Illusion</option>
+    <option value="Necromancy">Necromancy</option>
+    <option value="Transmutation" >Transmutation</option>
+  </select>
+  
+  <select id="castingSearch" class="filter">
+	<option value="NA" selected>Casting Time</option>
+	<option value="1 Action">1 Action</option>
+    <option value="1 Bonus Action">1 Bonus Action</option>
+    <option value="Special" >Special</option>
+  </select>
+  
+  <select id="ritualSearch" class="filter">
+	<option value="NA" selected>Ritual</option>
+	<option value="Yes">Yes</option>
+    <option value="No">No</option>
+  </select>
+  
+  <select id="concentrationSearch" class="filter">
+	<option value="NA" selected>Concentration</option>
+	<option value="Yes">Yes</option>
+    <option value="No">No</option>
+  </select>
+  
+  <select id="sourceSearch" class="filter">
+	<option value="NA" selected>Source</option>
+	<option value="Player's Handbook">Player's Handbook</option>
+    <option value="Elemental Evil">Elemental Evil</option>
+	<option value="Sword Coast Adv. Guide">Sword Coast Adv. Guide</option>
+  </select>
+  
+  <input type="reset" onclick="filterUndo()" value="Undo" />
+  </form>
+   <button onclick="Filterer()">Filter</button>
+  
+  <!-- <p><button onclick="sortTable()">Sort</button></p> -->
+  <table id = "myTable" >
+		 <tr class="bard cleric druid paladin ranger sorcerer warlock wizard">
+		 <th>Name</th>
+		 <th>Level</th>
+		 <th>School</th>
+		 <th>Casting Time</th>
+		 <th>Ritual</th>
+		 <th>Concentration</th>
+		 <th>Source</th>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Acid Splash</td>
+		 <td class = "level">0</td>
+		 <td class = "school">Conjuration</td>
+		 <td class = "cTime">1 Action</td>
+		 <td class = "ritual">No</td>
+		 <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric paladin">
+		 <td class = "name">Aid</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "ranger wizard">
+		 <td class = "name">Alarm</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Alter Self</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid ranger">
+		 <td class = "name">Animal Friendship</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid ranger">
+		 <td class = "name">Animal Messenger</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Animal Shapes</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric wizard">
+		 <td class = "name">Animate Dead</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer wizard">
+		 <td class = "name">Animate Object</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Antilife Shell</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric wizard">
+		 <td class = "name">Antimagic Field</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid wizard">
+		 <td class = "name">Antipathy/Sympathy</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Hour</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Arcane Eye</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer warlock wizard">
+		 <td class = "name">Arcane Gate</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Arcane Lock</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "warlock">
+		 <td class = "name">Armor of Agathys</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "warlock">
+		 <td class = "name">Arms of Hadar</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric warlock wizard">
+		 <td class = "name">Astral Projection</td>
+		 <td class = "level">9th</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Hour</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Augury</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "paladin">
+		 <td class = "name">Aura of Life</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "paladin">
+		 <td class = "name">Aura of Purity</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "paladin">
+		 <td class = "name">Aura of Vitality</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid">
+		 <td class = "name">Awaken</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">8 Hours</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric">
+		 <td class = "name">Bane</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "paladin">
+		 <td class = "name">Banishing Smite</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric paladin sorcerer warlock wizard">
+		 <td class = "name">Banishment</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid ranger">
+		 <td class = "name">Barkskin</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Beacon of Hope</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid ranger">
+		 <td class = "name">Beast Sense</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric wizard">
+		 <td class = "name">Bestow Curse</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Bigsby&rsquo;s Hand</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Blade Ward</td>
+		 <td class = "level">0</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric paladin">
+		 <td class = "name">Bless</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer warlock wizard">
+		 <td class = "name">Blight</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "paladin">
+		 <td class = "name">Blinding Smite</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric sorcerer wizard">
+		 <td class = "name">Blindness/Deafness</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Blink</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Blur</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "paladin">
+		 <td class = "name">Branding Smite</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Burning Hands</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Call Lightning</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric">
+		 <td class = "name">Calm Emotion</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Chain Lightning</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid sorcerer warlock wizard">
+		 <td class = "name">Charm Person</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer warlock wizard">
+		 <td class = "name">Chill Touch</td>
+		 <td class = "level">0</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Chromatic Orb</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer warlock wizard">
+		 <td class = "name">Circle of Death</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "Paladin">
+		 <td class = "name">Circle of Power</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric sorcerer wizard">
+		 <td class = "name">Clairvoyance</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">10 Minutes</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Clone</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Hour</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Cloud of Daggers</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Cloudkill</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Color Spray</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric paladin">
+		 <td class = "name">Command</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Commune</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid ranger">
+		 <td class = "name">Commune with Nature</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "paladin">
+		 <td class = "name">Compelled Duel</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Comprehend Languages</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard">
+		 <td class = "name">Compulsion</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Cone of Cold</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid sorcerer wizard">
+		 <td class = "name">Confusion</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid ranger">
+		 <td class = "name">Conjure Animals</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "ranger">
+		 <td class = "name">Conjure Barrage</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Conjure Celestial</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid wizard">
+		 <td class = "name">Conjure Elemental</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid warlock">
+		 <td class = "name">Conjure Fey</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid wizard">
+		 <td class = "name">Conjure Minor Elemental</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "ranger">
+		 <td class = "name">Conjure Volley</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid ranger">
+		 <td class = "name">Conjure Woodland Beings</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "warlock wizard">
+		 <td class = "name">Contact Other Planes</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid">
+		 <td class = "name">Contagion</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Contingency</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">10 Minutes</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric wizard">
+		 <td class = "name">Continual Flame</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid wizard">
+		 <td class = "name">Control Water</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Control Weather</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">10 Minutes</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "ranger">
+		 <td class = "name">Cordon of Arrows</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer warlock wizard">
+		 <td class = "name">Counterspell</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">Special</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric paladin">
+		 <td class = "name">Create Food and Water</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid">
+		 <td class = "name">Create and Destroy Water</td>
+		 <td class = "level">10</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric warlock wizard">
+		 <td class = "name">Create Undead</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Creation</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Crown of Madness</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "paladin">
+		 <td class = "name">Crusader&rsquo;s Mantle</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid paladin ranger">
+		 <td class = "name">Cure Wounds</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer wizard">
+		 <td class = "name">Dancing Lights</td>
+		 <td class = "level">0</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer warlock wizard">
+		 <td class = "name">Darkness</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid ranger sorcerer wizard">
+		 <td class = "name">Darkvision</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid paladin ranger sorcerer">
+		 <td class = "name">Daylight</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric paladin">
+		 <td class = "name">Death Ward</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Delayed Blast Fireball</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "warlock wizard">
+		 <td class = "name">Demiplane</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "paladin">
+		 <td class = "name">Destructive Wave</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric paladin">
+		 <td class = "name">Detect Evil and Good</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid paladin ranger sorcerer wizard">
+		 <td class = "name">Detect Magic</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid paladin ranger">
+		 <td class = "name">Detect Poison and Disease</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer wizard">
+		 <td class = "name">Detect Thoughts</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Dimension Door</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer wizard">
+		 <td class = "name">Disguise Self</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Disintegrate</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric paladin">
+		 <td class = "name">Dispel Evil and Good</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid paladin sorcerer warlock wizard">
+		 <td class = "name">Dispel Magic</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard">
+		 <td class = "name">Dissonant Whispers</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Divination</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "paladin">
+		 <td class = "name">Divine Favor</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Divine Word</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer">
+		 <td class = "name">Dominate Beast</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Dominate Monster</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer wizard">
+		 <td class = "name">Dominate Person</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Drawmij&rsquo;s Instant Summoning</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard warlock wizard">
+		 <td class = "name">Dream</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Druidcraft</td>
+		 <td class = "level">0</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid sorcerer">
+		 <td class = "name">Earthquake</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "warlock">
+		 <td class = "name">Eldritch Blast</td>
+		 <td class = "level">0</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "paladin">
+		 <td class = "name">Elemental Weapon</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid sorcerer">
+		 <td class = "name">Enhance Ability</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Enlarge/Reduce</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "ranger">
+		 <td class = "name">Ensnaring Strike</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Entangle</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard warlock">
+		 <td class = "name">Enthrall</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric sorcerer warlock wizard">
+		 <td class = "name">Etherealness</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Evard&rsquo;s Black Tentacles</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer warlock wizard">
+		 <td class = "name">Expeditious Retreat</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Eyebite</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Fabricate</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">10 Minutes</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid">
+		 <td class = "name">Faerie Fire</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">False Life</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Fear</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer wizard">
+		 <td class = "name">Feather Fall</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">Special</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid warlock wizard">
+		 <td class = "name">Feeblemind</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid wizard">
+		 <td class = "name">Feign Death</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Find Familar</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Hour</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "paladin">
+		 <td class = "name">Find Steed</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">10 Minutes</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid">
+		 <td class = "name">Find the Path</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid ranger">
+		 <td class = "name">Find Traps</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer warlock wizard">
+		 <td class = "name">Finger of Death</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Fire Bolt</td>
+		 <td class = "level">0</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Fire Shield</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid sorcerer">
+		 <td class = "name">Fire Storm</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Fireball</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Flame Blade</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Flame Strike</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid wizard">
+		 <td class = "name">Flaming Sphere</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "warlock wizard">
+		 <td class = "name">Flesh to Stone</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer warlock wizard">
+		 <td class = "name">Fly</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid ranger sorcerer wizard">
+		 <td class = "name">Fog Cloud</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Forbiddance</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">10 Minutes</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard warlock wizard">
+		 <td class = "name">Forcecage</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid warlock wizard">
+		 <td class = "name">Foresight</td>
+		 <td class = "level">9th</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid ranger">
+		 <td class = "name">Freedom of Movement</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Friends</td>
+		 <td class = "level">0</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer warlock wizard">
+		 <td class = "name">Gaseous Form</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric sorcerer wizard">
+		 <td class = "name">Gate</td>
+		 <td class = "level">9th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid paladin wizard">
+		 <td class = "name">Geas</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric wizard">
+		 <td class = "name">Gentle Repose</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Giant Insect</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard warlock">
+		 <td class = "name">Glibness</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Globe of Invulnerability</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric wizard">
+		 <td class = "name">Glyph of Warding</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Hour</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid ranger">
+		 <td class = "name">Goodberry</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid ranger">
+		 <td class = "name">Grasping Vine</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Grease</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer wizard">
+		 <td class = "name">Greater Invisibility</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid">
+		 <td class = "name">Greater Restoration</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Guardian of Faith</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard wizard">
+		 <td class = "name">Guards and Wards</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">10 Minutes</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid">
+		 <td class = "name">Guidance</td>
+		 <td class = "level">0</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Guiding Bolt</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Gust of Wind</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "ranger">
+		 <td class = "name">Hail of Thorns</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Hallow</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">24 Hours</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid warlock wizard">
+		 <td class = "name">Hallucinatory Terrain</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">10 Minutes</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Harm</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Haste</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid cleric">
+		 <td class = "name">Heal</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid">
+		 <td class = "name">Healing Word</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid">
+		 <td class = "name">Heat Metal</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "warlock">
+		 <td class = "name">Hellish Rebuke</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">Special</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Heroes&rsquo; Feast</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">10 Minutes</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard paladin">
+		 <td class = "name">Heroism</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "warlock">
+		 <td class = "name">Hex</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Hold Monster</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid warlock sorcerer wizard">
+		 <td class = "name">Hold Person</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Holy Aura</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "warlock">
+		 <td class = "name">Hunger of Hadar</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "ranger">
+		 <td class = "name">Hunter&rsquo;s Mark</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Hypnotic Pattern</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Ice Storm</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard wizard">
+		 <td class = "name">Identify</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard warlock wizard">
+		 <td class = "name">Illusory Script</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "warlock wizard">
+		 <td class = "name">Imprisonment</td>
+		 <td class = "level">9th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Incendiary Cloud</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Inflict Wounds</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid sorcerer">
+		 <td class = "name">Insect Plague</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Invisibility</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer ranger wizard">
+		 <td class = "name">Jump</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer wizard">
+		 <td class = "name">Knock</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric wizard">
+		 <td class = "name">Legend Lore</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">10 Minutes</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Leomond&rsquo;s Secret Chest</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard wizard">
+		 <td class = "name">Leomund&rsquo;s Tiny Hut</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid paladin ranger">
+		 <td class = "name">Lesser Restoration</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Levitate</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric sorcerer wizard">
+		 <td class = "name">Light</td>
+		 <td class = "level">0</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "ranger">
+		 <td class = "name">Lightning Arrow</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Lightning Bolt</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid ranger">
+		 <td class = "name">Locate Animals or Plants</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid paladin ranger wizard">
+		 <td class = "name">Locate Creature</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid paladin ranger wizard">
+		 <td class = "name">Locate Object</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid ranger wizard">
+		 <td class = "name">Longstrider</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Mage Armor</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Mage Hand</td>
+		 <td class = "level">0</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric paladin warlock wizard">
+		 <td class = "name">Magic Circle</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Magic Jar</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Magic Missile</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard wizard">
+		 <td class = "name">Magic Mouth</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "paladin wizard">
+		 <td class = "name">Magic Weapon</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Major Image</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid">
+		 <td class = "name">Mass Cure Wounds</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Mass Heal</td>
+		 <td class = "level">9th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Mass Healing Word</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Mass Suggestion</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Maze</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid">
+		 <td class = "name">Meld into Stone</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Melf&rsquo;s Acid Arrow</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid sorcerer wizard">
+		 <td class = "name">Mending</td>
+		 <td class = "level">0</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer wizard">
+		 <td class = "name">Message</td>
+		 <td class = "level">0</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Meteor Swarm</td>
+		 <td class = "level">9th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard wizard">
+		 <td class = "name">Mind Blank</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Minor Illusion</td>
+		 <td class = "level">0</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid wizard">
+		 <td class = "name">Mirage Arcana</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">10 Minutes</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer warlock wizard">
+		 <td class = "name">Mirror Image</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard wizard">
+		 <td class = "name">Mislead</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer warlock wizard">
+		 <td class = "name">Misty Step</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard wizard">
+		 <td class = "name">Modify Memory</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Moonbeam</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Mordenkainen&rsquo;s Faithful Hound</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard wizard">
+		 <td class = "name">Mordenkainen&rsquo;s Magnificent Mansion</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Mordenkainen&rsquo;s Private Sanctum</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">10 Minutes</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard wizard">
+		 <td class = "name">Mordenkainen&rsquo;s Sword</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Move Earth</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard ranger wizard">
+		 <td class = "name">Nondetection</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Nystul&rsquo;s Magic Aura</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Otiluke&rsquo;s Freezing Sphere</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Otiluke&rsquo;s Resilient Sphere</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard wizard">
+		 <td class = "name">Otto&rsquo;s Irresistible Dance</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid ranger">
+		 <td class = "name">Pass without Trace</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Passwall</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer wizard">
+		 <td class = "name">Phantasmal Force</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Phantasmal Killer</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Phantom Steed</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Planar Ally</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">10 Minutes</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid wizard">
+		 <td class = "name">Planar Binding</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Hour</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid sorcerer warlock wizard">
+		 <td class = "name">Plane Shift</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid ranger">
+		 <td class = "name">Plant Growth</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">Special</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer warlock wizard">
+		 <td class = "name">Poison Spray</td>
+		 <td class = "level">0</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid sorcerer wizard">
+		 <td class = "name">Polymorph</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Power Word Kill</td>
+		 <td class = "level">9th</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Power Word Stun</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Prayer of Healing</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">10 Minutes</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Prestidigitation</td>
+		 <td class = "level">0</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Prismatic Spray</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Prismatic Wall</td>
+		 <td class = "level">9th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Produce Flame</td>
+		 <td class = "level">0</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard wizard">
+		 <td class = "name">Programmed Illusion</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard wizard">
+		 <td class = "name">Project Image</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid ranger sorcerer wizard">
+		 <td class = "name">Protection from Energy</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric paladin warlock wizard">
+		 <td class = "name">Protection From Evil and Good</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid paladin ranger">
+		 <td class = "name">Protection from Poison</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid paladin">
+		 <td class = "name">Purify Food and Drink</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric paladin">
+		 <td class = "name">Raise Dead</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Hour</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Rary&rsquo;s Telepathic Bond</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "warlock wizard">
+		 <td class = "name">Ray of Enfeeblement</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Ray of Frost</td>
+		 <td class = "level">0</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Ray of Sickness</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid">
+		 <td class = "name">Regenerate</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Reincarnate</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Hour</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric paladin warlock wizard">
+		 <td class = "name">Remove Curse</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid">
+		 <td class = "name">Resistance</td>
+		 <td class = "level">0</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric">
+		 <td class = "name">Resurrection</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Hour</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Reverse Gravity</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric paladin">
+		 <td class = "name">Revivify</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Rope Trick</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Sacred Flame</td>
+		 <td class = "level">0</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Sanctuary</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Scorching Ray</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric druid warlock wizard">
+		 <td class = "name">Scrying</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">10 Minutes</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "paladin">
+		 <td class = "name">Searing Smite</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer wizard">
+		 <td class = "name">See Invisibility</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer wizard">
+		 <td class = "name">Seeming</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric wizard">
+		 <td class = "name">Sending</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Sequester</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid wizard">
+		 <td class = "name">Shapechange</td>
+		 <td class = "level">9th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Shatter</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Shield</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">Special</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric paladin">
+		 <td class = "name">Shield of Faith</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Shillelagh</td>
+		 <td class = "level">0</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Shocking Grasp</td>
+		 <td class = "level">0</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric ranger">
+		 <td class = "name">Silence</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer wizard">
+		 <td class = "name">Silent Image</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Simulacrum</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">12 Hours</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer wizard">
+		 <td class = "name">Sleep</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Sleet Storm</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Slow</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Spare the Dying</td>
+		 <td class = "level">0</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid ranger">
+		 <td class = "name">Speak with Animals</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric">
+		 <td class = "name">Speak with Dead</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid ranger">
+		 <td class = "name">Speak with Plants</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer warlock wizard">
+		 <td class = "name">Spider Climb</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid ranger">
+		 <td class = "name">Spike Growth</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Spirit Guardians</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Spiritual Weapon</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "paladin">
+		 <td class = "name">Staggering Smite</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer wizard">
+		 <td class = "name">Stinking Cloud</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid wizard">
+		 <td class = "name">Stone Shape</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid ranger sorcerer wizard">
+		 <td class = "name">Stoneskin</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Storm of Vengeance</td>
+		 <td class = "level">9th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">Suggestion</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Sunbeam</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Sunburst</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "ranger">
+		 <td class = "name">Swift Quiver</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric wizard">
+		 <td class = "name">Symbol</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard wizard">
+		 <td class = "name">Tasha&rsquo;s Hideous Laughter</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Telekinesis</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Telepathy</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer wizard">
+		 <td class = "name">Teleport</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer wizard">
+		 <td class = "name">Teleportation Circle</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Tenser&rsquo;s Floating Disk</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Thaumaturgy</td>
+		 <td class = "level">0</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Thorn Whip</td>
+		 <td class = "level">0</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "paladin">
+		 <td class = "name">Thunderous Smite</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid sorcerer wizard">
+		 <td class = "name">Thunderwave</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Time Stop</td>
+		 <td class = "level">9th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric sorcerer warlock wizard">
+		 <td class = "name">Tongues</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Transport via Plants</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid ranger">
+		 <td class = "name">Tree Stride</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard warlock wizard">
+		 <td class = "name">True Polymorph</td>
+		 <td class = "level">9th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid">
+		 <td class = "name">True Resurrection</td>
+		 <td class = "level">9th</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Hour</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric sorcerer warlock wizard">
+		 <td class = "name">True Seeing</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer warlock wizard">
+		 <td class = "name">True Strike</td>
+		 <td class = "level">0</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Tsunami</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard warlock wizard">
+		 <td class = "name">Unseen Servant</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "warlock wizard">
+		 <td class = "name">Vampiric Touch</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Wall of Fire</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Wall of Force</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Wall of Ice</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Wall of Stone</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Wall of Thorns</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Warding Bond</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid ranger sorcerer wizard">
+		 <td class = "name">Water Breathing</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric druid ranger sorcerer">
+		 <td class = "name">Water Walk</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Web</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Weird</td>
+		 <td class = "level">9th</td>
+         <td class = "school">Illusion</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Wind Walk</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Minute</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "druid ranger">
+		 <td class = "name">Wind Wall</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Wish</td>
+		 <td class = "level">9th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer warlock wizard">
+		 <td class = "name">Witch Bolt</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "cleric">
+		 <td class = "name">Word of Recall</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "paladin">
+		 <td class = "name">Wrathful Smite</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard cleric paladin">
+		 <td class = "name">Zone of Truth</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard">
+		 <td class = "name">Power Word Heal</td>
+		 <td class = "level">9th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard">
+		 <td class = "name">Vicious Mockery</td>
+		 <td class = "level">0</td>
+         <td class = "school">Enchantment</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
+		 <tr class = "bard druid sorcerer warlock wizard">
+		 <td class = "name">Thunderclap</td>
+		 <td class = "level">0</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "bard druid sorcerer wizard">
+		 <td class = "name">Earth Tremor</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "bard sorcerer wizard">
+		 <td class = "name">Pyrotechnics</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "bard druid wizard">
+		 <td class = "name">Skywrite</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">Yes</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "bard druid sorcerer">
+		 <td class = "name">Warding Wind</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer warlock wizard">
+		 <td class = "name">Create Bonfire</td>
+		 <td class = "level">0</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Control Flame</td>
+		 <td class = "level">0</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer warlock wizard">
+		 <td class = "name">Frostbite</td>
+		 <td class = "level">0</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Gust</td>
+		 <td class = "level">0</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid warlock">
+		 <td class = "name">Magic Stone</td>
+		 <td class = "level">0</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Bonus Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Mold Earth</td>
+		 <td class = "level">0</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Shape Water</td>
+		 <td class = "level">0</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid ranger wizard">
+		 <td class = "name">Absorb Element</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">Special</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid ranger">
+		 <td class = "name">Beast Bond</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Divination</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Ice Knife</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Dust Devil</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer warlock wizard">
+		 <td class = "name">Earthbind</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Erupting Earth</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid ranger sorcerer wizard">
+		 <td class = "name">Flame Arrow</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid wizard">
+		 <td class = "name">Tidal Wave</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Wall of Water</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid warlock wizard">
+		 <td class = "name">Elemental Bane</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Watery Sphere</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid sorcerer wizard">
+		 <td class = "name">Control Winds</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Maelstrom</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid wizard">
+		 <td class = "name">Transmute Rock</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Bones of the Earth</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "bard druid warlock wizard">
+		 <td class = "name">Investiture of Flame</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "bard druid warlock wizard">
+		 <td class = "name">Investiture of Ice</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "bard druid warlock wizard">
+		 <td class = "name">Investiture of Stone</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "bard druid warlock wizard">
+		 <td class = "name">Investiture of Wind</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid">
+		 <td class = "name">Primordial Ward</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Abjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "druid wizard">
+		 <td class = "name">Whirlwind</td>
+		 <td class = "level">7th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Catapult</td>
+		 <td class = "level">1st</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Aganazzar&rsquo;s Scorcher</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Maximillian&rsquo;s Earthen Grasp</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Transmutation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Snilloc&rsquo;s Snowball Swarm</td>
+		 <td class = "level">2nd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Melf&rsquo;s Minute Meteors</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Storm Sphere</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Vitriolic Sphere</td>
+		 <td class = "level">4th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Immolation</td>
+		 <td class = "level">5th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer wizard">
+		 <td class = "name">Abi-Dalzim&rsquo;s Horrid Wilting</td>
+		 <td class = "level">8th</td>
+         <td class = "school">Necromancy</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "wizard">
+		 <td class = "name">Wall of Sand</td>
+		 <td class = "level">3rd</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">Yes</td>
+		 <td class = "source">Elemental Evil</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer warlock wizard">
+		 <td class = "name">Booming Blade</td>
+		 <td class = "level">0</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Sword Coast Adv. Guide</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer warlock wizard">
+		 <td class = "name">Green-Flame Blade</td>
+		 <td class = "level">0</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Sword Coast Adv. Guide</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer warlock wizard">
+		 <td class = "name">Lightning Lure</td>
+		 <td class = "level">0</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Sword Coast Adv. Guide</td>
+		 </tr>
+		 
+		 <tr class = "sorcerer warlock wizard">
+		 <td class = "name">Sword Burst</td>
+		 <td class = "level">0</td>
+         <td class = "school">Conjuration</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Sword Coast Adv. Guide</td>
+		 </tr>
+		 
+		 </table>
+		  <hr>
+		  
+		  <footer>
+   </footer>
+ 
+  </body>
+  
+   </html>
