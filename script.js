@@ -1,3 +1,4 @@
+//Searches through the table based on the text inputted
 function Search() {
   var input, filter, table, tr, td, i;
   input = document.getElementById("myInput");
@@ -16,6 +17,7 @@ function Search() {
   }
 }
 
+//Filters the tables based on the selected, 7 checks for all the selectors
 function Filterer() {
 	var i;
 	filterUndo();
@@ -26,6 +28,7 @@ function Filterer() {
 	}
 }
 
+//Runs the filter based on the number
 function Filter(num) {
   var table, tr, td, i, search, check;
   table = document.getElementById("myTable");
@@ -63,6 +66,7 @@ function Filter(num) {
   }
 }
 
+//Filters the class
 function classFilter() {
   var table, tr, td, i, classSearch, check;
   table = document.getElementById("myTable");
@@ -79,7 +83,7 @@ function classFilter() {
   }
 }
 
-
+//Clears the filter
 function filterUndo() {
 	var table, tr, i;
 	table = document.getElementById("myTable");
@@ -90,6 +94,7 @@ function filterUndo() {
 	}
 }
 
+//Activates the quickSort function on the table
 function sortTable(){
 	
 	var table, rows, switching, i, x, y, pivotPoint, pivot;
@@ -98,6 +103,7 @@ function sortTable(){
 	quickSort(tr, 1, tr.length - 1);
 }
 
+//Sorts the table alphabetically
 function quickSort(tr, left, right){
 	var pivot, partitionIndex;
 	
@@ -127,15 +133,40 @@ function swap(tr, i, j){
 	tr[j].parentNode.insertBefore(tr[i], tr[j]);
 }
 
-function myFunction() {
-    var popup = document.getElementById("myPopup");
-    popup.classList.toggle("show");
-}
-/*function levelFilter() {
-	var levelSearch = document.getElementById("levelSearch");
-    var check = levelSearch.options[levelSearch.selectedIndex].value;
-	table = document.getElementById("myTable");
-	var tr = table.getElementsByTagName("tr");
-	var td = tr[1].getElementsByTagName("td")[1];
-	document.write(td.innerHTML);
+//Puts the spell data into the modal after being clicked
+$(document).ready(function(){
+	$("tr").click(function(){
+	var clicked = this.getElementsByTagName("td")[0].innerHTML.trim();
+	
+		$("#myModal").modal();
+		
+		var modalTitle = '<h4>' + clicked + '</h4>';
+		
+		$(".modal-header").append(modalTitle);
+		clicked = clicked.replace(/[^a-z0-9\s]/gi, '');
+		
+		$(".modal-header").append(spell_data[clicked][0]);
+		$(".modal-header").append("<br>Casting Time: <strong>" +spell_data[clicked][1]+"</strong>");
+		$(".modal-header").append("<br>Range: <strong>" +spell_data[clicked][2]+"</strong>");
+		$(".modal-header").append("<br>Components: <strong>" +spell_data[clicked][3]+"</strong>");
+		$(".modal-header").append("<br>Duration: <strong>" +spell_data[clicked][4]+"</strong>");
+		$(".modal-body").append(spell_data[clicked][5]);
+		$(".modal-footer").append(spell_data[clicked][6]);
+		$(".modal-footer").append("	&#160;<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>");
+	});
+});
+
+//Clears the modal once it is hidden to be used for other data
+$(document).ready(function(){
+	$('#myModal').on('hidden.bs.modal', function () {
+		$(".modal-header").html("");
+		$(".modal-body").html("");
+		$(".modal-footer").html("");
+	})
+});
+
+/*document.getElementById('myInput').onkeydown = function(event) {
+    if (event.keyCode == 13) {
+        alert('A');
+    }
 }*/
