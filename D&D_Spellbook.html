@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<title>D&D 5th edition Spells</title> 
+	<title>D&amp;D 5th edition Spells</title> 
     <meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="normalize.css"   type="text/css" media="screen" /> 
@@ -9,12 +9,16 @@
 	<link rel="stylesheet" href="spells.css"   type="text/css" media="screen" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<script   src="script.js"    type="text/javascript"></script>
+	<script src="spell_data.js" type="text/javascript" ></script> 
   </head>
-  <body onload="sortTable()">
+  <body>
+  
+  <form>
   
   <input type="text" id="myInput" placeholder="Search for spells" title="Type in a name">
-  <form>
+  
   <select id="classSearch" class="filter">
 	<option value="NA" selected>Class</option>
 	<option value="bard">Bard</option>
@@ -79,11 +83,11 @@
 	<option value="Sword Coast Adv. Guide">Sword Coast Adv. Guide</option>
   </select>
   
-  <input type="reset" onclick="filterUndo()" value="Undo" />
+  <input type="reset" onclick="filterUndo()" value="Undo" id="Reset"/>
   </form>
    <button onclick="Filterer()">Filter</button>
   
-  <!-- <p><button onclick="sortTable()">Sort</button></p> -->
+  <!-- <p><button onclick="sortTable()">Sort Table Alphabetically</button></p> -->
   <table id = "myTable" >
 		 <tr class="bard cleric druid paladin ranger sorcerer warlock wizard">
 		 <th>Name</th>
@@ -206,7 +210,7 @@
 		 </tr>
 		 
 		 <tr class = "druid wizard">
-		 <td class = "name">Antipathy/Sympathy</td>
+		 <td class = "name">Antipathy&#x2F;Sympathy</td>
 		 <td class = "level">8th</td>
          <td class = "school">Enchantment</td>
          <td class = "cTime">1 Hour</td>
@@ -405,6 +409,16 @@
 		 <td class = "source">Player's Handbook</td>
 		 </tr>
 		 
+		 <tr class = "cleric">
+		 <td class = "name">Blade Barrier</td>
+		 <td class = "level">6th</td>
+         <td class = "school">Evocation</td>
+         <td class = "cTime">1 Action</td>
+         <td class = "ritual">No</td>
+         <td class = "concentration">No</td>
+		 <td class = "source">Player's Handbook</td>
+		 </tr>
+		 
 		 <tr class = "bard sorcerer warlock wizard">
 		 <td class = "name">Blade Ward</td>
 		 <td class = "level">0</td>
@@ -446,7 +460,7 @@
 		 </tr>
 		 
 		 <tr class = "bard cleric sorcerer wizard">
-		 <td class = "name">Blindness/Deafness</td>
+		 <td class = "name">Blindness&#x2F;Deafness</td>
 		 <td class = "level">2nd</td>
          <td class = "school">Necromancy</td>
          <td class = "cTime">1 Action</td>
@@ -876,8 +890,8 @@
 		 </tr>
 		 
 		 <tr class = "cleric druid">
-		 <td class = "name">Create and Destroy Water</td>
-		 <td class = "level">10</td>
+		 <td class = "name">Create or Destroy Water</td>
+		 <td class = "level">1st</td>
          <td class = "school">Transmutation</td>
          <td class = "cTime">1 Action</td>
          <td class = "ritual">No</td>
@@ -1176,7 +1190,7 @@
 		 </tr>
 		 
 		 <tr class = "wizard">
-		 <td class = "name">Drawmij&rsquo;s Instant Summoning</td>
+		 <td class = "name">Drawmij&rsquo;s Instant Summons</td>
 		 <td class = "level">6th</td>
          <td class = "school">Conjuration</td>
          <td class = "cTime">1 Minute</td>
@@ -1246,7 +1260,7 @@
 		 </tr>
 		 
 		 <tr class = "sorcerer wizard">
-		 <td class = "name">Enlarge/Reduce</td>
+		 <td class = "name">Enlarge&#x2F;Reduce</td>
 		 <td class = "level">2nd</td>
          <td class = "school">Transmutation</td>
          <td class = "cTime">1 Action</td>
@@ -1396,7 +1410,7 @@
 		 </tr>
 		 
 		 <tr class = "wizard">
-		 <td class = "name">Find Familar</td>
+		 <td class = "name">Find Familiar</td>
 		 <td class = "level">5th</td>
          <td class = "school">Conjuration</td>
          <td class = "cTime">1 Hour</td>
@@ -2066,7 +2080,7 @@
 		 </tr>
 		 
 		 <tr class = "wizard">
-		 <td class = "name">Leomond&rsquo;s Secret Chest</td>
+		 <td class = "name">Leomund&rsquo;s Secret Chest</td>
 		 <td class = "level">4th</td>
          <td class = "school">Conjuration</td>
          <td class = "cTime">1 Action</td>
@@ -2746,7 +2760,7 @@
 		 </tr>
 		 
 		 <tr class = "cleric paladin warlock wizard">
-		 <td class = "name">Protection From Evil and Good</td>
+		 <td class = "name">Protection from Evil and Good</td>
 		 <td class = "level">1st</td>
          <td class = "school">Abjuration</td>
          <td class = "cTime">1 Action</td>
@@ -3756,7 +3770,7 @@
 		 </tr>
 		 
 		 <tr class = "druid sorcerer wizard">
-		 <td class = "name">Control Flame</td>
+		 <td class = "name">Control Flames</td>
 		 <td class = "level">0</td>
          <td class = "school">Transmutation</td>
          <td class = "cTime">1 Action</td>
@@ -3816,7 +3830,7 @@
 		 </tr>
 		 
 		 <tr class = "druid ranger wizard">
-		 <td class = "name">Absorb Element</td>
+		 <td class = "name">Absorb Elements</td>
 		 <td class = "level">1st</td>
          <td class = "school">Abjuration</td>
          <td class = "cTime">Special</td>
@@ -3876,7 +3890,7 @@
 		 </tr>
 		 
 		 <tr class = "druid ranger sorcerer wizard">
-		 <td class = "name">Flame Arrow</td>
+		 <td class = "name">Flame Arrows</td>
 		 <td class = "level">3rd</td>
          <td class = "school">Transmutation</td>
          <td class = "cTime">1 Action</td>
@@ -4046,7 +4060,7 @@
 		 </tr>
 		 
 		 <tr class = "sorcerer wizard">
-		 <td class = "name">Maximillian&rsquo;s Earthen Grasp</td>
+		 <td class = "name">Maximilian&rsquo;s Earthen Grasp</td>
 		 <td class = "level">2nd</td>
          <td class = "school">Transmutation</td>
          <td class = "cTime">1 Action</td>
@@ -4106,7 +4120,7 @@
 		 </tr>
 		 
 		 <tr class = "sorcerer wizard">
-		 <td class = "name">Abi-Dalzim&rsquo;s Horrid Wilting</td>
+		 <td class = "name">Abi&#45;Dalzim&rsquo;s Horrid Wilting</td>
 		 <td class = "level">8th</td>
          <td class = "school">Necromancy</td>
          <td class = "cTime">1 Action</td>
@@ -4136,7 +4150,7 @@
 		 </tr>
 		 
 		 <tr class = "sorcerer warlock wizard">
-		 <td class = "name">Green-Flame Blade</td>
+		 <td class = "name">Green&#45;Flame Blade</td>
 		 <td class = "level">0</td>
          <td class = "school">Evocation</td>
          <td class = "cTime">1 Action</td>
@@ -4166,7 +4180,31 @@
 		 </tr>
 		 
 		 </table>
+		 <script>sortTable(); </script>
 		  <hr>
+		  
+		  <div class="container">
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+          <!-- <h4 class="modal-title"></h4> -->
+        </div>
+        <div class="modal-body">
+          <p></p>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 		  
 		  <footer>
    </footer>
