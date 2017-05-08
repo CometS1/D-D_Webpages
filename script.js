@@ -1,4 +1,4 @@
-//Searches through the table based on the text inputted
+//Searches through the table based on the text
 function Search() {
   var input, filter, table, tr, td, i;
   input = document.getElementById("myInput");
@@ -54,7 +54,7 @@ function Filter(num) {
 	break;
   }
   check = search.options[search.selectedIndex].value;
-  if (check != "NA"){
+  if (check != "na"){
 	for (i = 0; i < tr.length; i++) {
 		td = tr[i].getElementsByTagName("td")[num];
 		if (td) {
@@ -73,7 +73,7 @@ function classFilter() {
   tr = table.getElementsByTagName("tr");
   classSearch = document.getElementById("classSearch");
   check = classSearch.options[classSearch.selectedIndex].value;
-  if (check != "NA"){
+  if (check != "na"){
 	for (i = 0; i < tr.length; i++) {
 			if (tr[i].className.indexOf(check) <= -1) {
 				tr[i].style.display = "none";
@@ -83,7 +83,7 @@ function classFilter() {
   }
 }
 
-//Clears the filter
+//Clears the filters
 function filterUndo() {
 	var table, tr, i;
 	table = document.getElementById("myTable");
@@ -103,7 +103,7 @@ function sortTable(){
 	quickSort(tr, 1, tr.length - 1);
 }
 
-//Sorts the table alphabetically
+//Sorts the table alphabetically using quickSort
 function quickSort(tr, left, right){
 	var pivot, partitionIndex;
 	
@@ -115,7 +115,7 @@ function quickSort(tr, left, right){
    quickSort(tr, partitionIndex + 1, right);
 	}
 }
-
+//Splits the table for swapping
 function partition(tr, pivot, left, right){
        partitionIndex = left;
    for(var i = left; i < right; i++){
@@ -127,7 +127,7 @@ function partition(tr, pivot, left, right){
   swap(tr, right, partitionIndex);
   return partitionIndex;
 }
-
+//Swaps table data places
 function swap(tr, i, j){
 	tr[i].parentNode.insertBefore(tr[j], tr[i]);
 	tr[j].parentNode.insertBefore(tr[i], tr[j]);
@@ -140,7 +140,7 @@ $(document).ready(function(){
 	
 		$("#myModal").modal();
 		
-		var modalTitle = '<h4>' + clicked + '</h4>';
+		var modalTitle = '<h1>' + clicked + '</h1>';
 		
 		$(".modal-header").append(modalTitle);
 		clicked = clicked.replace(/[^a-z0-9\s]/gi, '');
@@ -165,8 +165,13 @@ $(document).ready(function(){
 	})
 });
 
-/*document.getElementById('myInput').onkeydown = function(event) {
-    if (event.keyCode == 13) {
-        alert('A');
-    }
-}*/
+//Displays Open Gaming License
+$(document).ready(function(){
+	$(".footer a").click(function(){
+		$("#myModal").modal();
+		$(".modal-header").append(license["ogl"][0]);
+		$(".modal-body").append(license["ogl"][1]);
+		$(".modal-footer").append(license["ogl"][2]);
+		
+	});
+});
