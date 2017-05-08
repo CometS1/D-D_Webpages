@@ -16,7 +16,6 @@
 	<script src="ogl.js" type="text/javascript" ></script> 
   </head>
   <body>
-  
   <form>
   <input type="text" id="myInput" placeholder="Search for spells" title="Type in a name">
   
@@ -86,8 +85,10 @@
   
   <input type="reset" onclick="filterUndo()" value="Undo" id="Reset"/>
   </form>
-   
+  
    <button onclick="Filterer()">Filter</button>
+  <button onclick="sortTable(); this.style.display = 'none'">Sort Alphabetically</button>
+  
   <table id = "myTable" >
 		 <tr class="bard cleric druid paladin ranger sorcerer warlock wizard">
 		 <th>Name</th>
@@ -4180,7 +4181,7 @@
 		 </tr>
 		 
 		 </table>
-		 <script>sortTable(); </script>
+		 <!-- <script>sortTable(); </script> -->
 		  <hr>
 		  
 		  <div class="container">
