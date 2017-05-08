@@ -48,11 +48,11 @@ font-size: 1vmax;
 }
 
 h1{
-	font-size: 1.8vmax;
+	font-size: 1.9vmax;
 }
 
 .modal-header{
-	font-size: 1.3vmax;
+	font-size: 1.4vmax;
 }
 
 .modal-content{
@@ -60,11 +60,12 @@ h1{
 }
 
 .modal-footer{
-	font-size: 1vmax;
+	font-size: 1.5vmax;
 }
 
 .modal-footer button{
-	font-size: 1vmax;
+	font-size: 1.5vmax;
+	padding: 0.5em 1em 0.5em 1em 
 }
 
 .footer {
