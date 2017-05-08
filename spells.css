@@ -52,14 +52,18 @@ h1{
 }
 
 .modal-header{
-	font-size: 1.2vmax;
+	font-size: 1.3vmax;
 }
 
 .modal-content{
-	font-size: 1.2vmax;
+	font-size: 1.5vmax;
 }
 
 .modal-footer{
+	font-size: 1vmax;
+}
+
+.modal-footer button{
 	font-size: 1vmax;
 }
 
