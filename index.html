@@ -7,20 +7,21 @@
 	<link rel="stylesheet" href="normalize.css"   type="text/css" media="screen" /> 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="spells.css"   type="text/css" media="screen" />
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<script   src="script.js"    type="text/javascript"></script>
 	<script src="spell_data.js" type="text/javascript" ></script> 
+	<script src="ogl.js" type="text/javascript" ></script> 
   </head>
   <body>
   
   <form>
-  
   <input type="text" id="myInput" placeholder="Search for spells" title="Type in a name">
   
   <select id="classSearch" class="filter">
-	<option value="NA" selected>Class</option>
+	<option value="na" selected>Class</option>
 	<option value="bard">Bard</option>
     <option value="cleric">Cleric</option>
     <option value="druid">Druid</option>
@@ -32,7 +33,7 @@
   </select>
   
   <select id="levelSearch" class="filter">
-	<option value="NA" selected>Spell Level</option>
+	<option value="na" selected>Spell Level</option>
 	<option value="0">0</option>
     <option value="1st">1st</option>
     <option value="2nd">2nd</option>
@@ -46,7 +47,7 @@
   </select>
   
   <select id="schoolSearch" class="filter">
-	<option value="NA" selected>School of Magic</option>
+	<option value="na" selected>School of Magic</option>
 	<option value="Abjuration">Abjuration</option>
     <option value="Conjuration">Conjuration</option>
     <option value="Divination">Divination</option>
@@ -58,26 +59,26 @@
   </select>
   
   <select id="castingSearch" class="filter">
-	<option value="NA" selected>Casting Time</option>
+	<option value="na" selected>Casting Time</option>
 	<option value="1 Action">1 Action</option>
     <option value="1 Bonus Action">1 Bonus Action</option>
     <option value="Special" >Special</option>
   </select>
   
   <select id="ritualSearch" class="filter">
-	<option value="NA" selected>Ritual</option>
+	<option value="na" selected>Ritual</option>
 	<option value="Yes">Yes</option>
     <option value="No">No</option>
   </select>
   
   <select id="concentrationSearch" class="filter">
-	<option value="NA" selected>Concentration</option>
+	<option value="na" selected>Concentration</option>
 	<option value="Yes">Yes</option>
     <option value="No">No</option>
   </select>
   
   <select id="sourceSearch" class="filter">
-	<option value="NA" selected>Source</option>
+	<option value="na" selected>Source</option>
 	<option value="Player's Handbook">Player's Handbook</option>
     <option value="Elemental Evil">Elemental Evil</option>
 	<option value="Sword Coast Adv. Guide">Sword Coast Adv. Guide</option>
@@ -85,9 +86,8 @@
   
   <input type="reset" onclick="filterUndo()" value="Undo" id="Reset"/>
   </form>
+   
    <button onclick="Filterer()">Filter</button>
-  
-  <!-- <p><button onclick="sortTable()">Sort Table Alphabetically</button></p> -->
   <table id = "myTable" >
 		 <tr class="bard cleric druid paladin ranger sorcerer warlock wizard">
 		 <th>Name</th>
@@ -4188,27 +4188,23 @@
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">
-    
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-          <!-- <h4 class="modal-title"></h4> -->
         </div>
         <div class="modal-body">
           <p></p>
         </div>
         <div class="modal-footer">
-          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
         </div>
       </div>
     </div>
   </div>
 </div>
-		  
-		  <footer>
-   </footer>
- 
-  </body>
-  
+	
+	<div class="footer">
+	<p>Code copyright 2017. 
+	<a>Content used under the Open Gaming License</a></p>
+   </div>
+ </body>
    </html>
