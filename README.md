@@ -1,2 +1,2 @@
 # D-D_Webpages
-These are webpages that I am creating to be used for D&amp;D purposes
+This is a web app that assists players with checking spell descriptions for the roleplaying game D&amp;D
